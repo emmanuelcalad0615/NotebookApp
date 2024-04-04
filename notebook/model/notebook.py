@@ -26,8 +26,8 @@ class Notebook:
         self.notes: list[Note] = notes
 
     def add_note(self, title: str, text: str, importance: str):
-        code_id = len(self.notes)
-        nota = Note(code_id, title, text, importance)
+        code_id: int = len(self.notes)
+        nota: Note = Note(code_id, title, text, importance)
         self.notes.append(nota)
 
     def important_notes(self) -> list[Note]:
