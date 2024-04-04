@@ -8,7 +8,7 @@ class Note:
     title: str
     text: str
     importance: str
-    creation_date: datetime = field(default_factory=datetime. now())
+    creation_date: datetime = field(default_factory=datetime.now)
     tags: list[str] = field(default_factory=list[str])
 
     def __str__(self):
@@ -31,9 +31,16 @@ class Notebook:
         self.notes.append(nota)
 
     def important_notes(self) -> list[Note]:
-        important_list: list[Note] = [important for important in self.notes if important.importance == "HIGH" or important.importance == "MEDIUM"]
+        important_list: list[Note] = [important for important in self.notes if
+                                      important.importance == "HIGH" or important.importance == "MEDIUM"]
         return important_list
 
     def tags_note_count(self) -> dict[str, int]:
-        pass
-
+        tags_count: dict[str, int] = {}
+        for note in self.notes:
+            for tag in note.tags:
+                if tag in tags_count:
+                    tags_count[tag] += 1
+                else:
+                    tags_count[tag] = 1
+        return tags_count
